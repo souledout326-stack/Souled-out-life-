@@ -22,7 +22,18 @@
   </style>
 </head>
 <body>
- <h1>🎉 Thank You for Joining the Movement!</h1>
+  <h1>🎉 Thank You for Joining the Movement!</h1>
+  <p>Your devotional is ready to download:</p>
+
+  <p>
+    <a href="https://github.com/souledout326-stack/Souled-out-life-/blob/main/devotional.pdf?raw=true" target="_blank">
+      📥 Download Devotional
+    </a>
+  </p>
+
+  <p style="margin-top: 30px;">You’ll be redirected to our homepage in 10 seconds...</p>
+</body>
+</html>
 <p>Your devotional is ready to download:</p>
 
 <p><a href="https://github.com/souledout326-stack/Souled-out-life-/blob/main/devotional.pdf?raw=true">Download Devotional</a></p>
