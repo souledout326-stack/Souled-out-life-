@@ -130,27 +130,43 @@
     
   <section style="background-color: #f9f9f9; padding: 20px; border-radius: 8px;">
     
-  <section id="contact" style="background-color: #f3f0ff; padding: 60px 20px; border-radius: 12px; max-width: 600px; margin: 60px auto;">
-  <h2 style="text-align: center; color: #4a148c; font-size: 2em; margin-bottom: 20px;">📩 Join the Movement</h2>
-  <p style="text-align: center; font-size: 1.1em; color: #333; margin-bottom: 30px;">
-    Be part of a Spirit-led journey. Receive devotionals, updates, and encouragement straight to your inbox — and feel free to share a prayer request or message of hope.
+  <section id="contact" style="background-color:#f3e5f5; padding:60px 20px; text-align:center;">
+  <h2 style="color:#4a148c; font-size:32px;">🙏 Submit a Prayer Request</h2>
+  <p style="font-size:18px; color:#555; max-width:600px; margin:auto;">
+    We believe in the power of prayer. Share your request below and we’ll stand with you in faith.
   </p>
 
-  <form action="https://formspree.io/f/mwpnyngz" method="POST" style="display: flex; flex-direction: column; gap: 15px;">
-    <input type="hidden" name="_redirect" value="https://souledout326-stack.github.io/Souled-out-life-/thank-you.html">
-    <label for="email" style="font-weight: bold;">Your email:</label>
-    <input type="email" name="email" id="email" placeholder="you@example.com" required style="padding: 10px; border-radius: 6px; border: 1px solid #ccc;">
-
-    <label for="message" style="font-weight: bold;">Your message (optional):</label>
-    <textarea name="message" id="message" rows="4" placeholder="Share a prayer request or encouragement..." style="padding: 10px; border-radius: 6px; border: 1px solid #ccc;"></textarea>
-
-    <button type="submit" style="background-color: #4a148c; color: white; padding: 12px; border: none; border-radius: 6px; font-weight: bold; cursor: pointer;">
-      Send & Subscribe
+  <form id="prayerForm" style="margin-top:30px;">
+    <input type="email" name="email" placeholder="Your email address (optional)" style="width:80%; padding:12px; margin:10px 0; border-radius:6px; border:1px solid #ccc;"><br>
+    <textarea name="message" placeholder="Your prayer request..." required style="width:80%; height:120px; padding:12px; border-radius:6px; border:1px solid #ccc;"></textarea><br>
+    <button type="submit" style="background-color:#4a148c; color:white; padding:12px 24px; border:none; border-radius:6px; font-weight:bold; cursor:pointer;">
+      Submit Request
     </button>
   </form>
 
-  <p style="text-align: center; margin-top: 20px; font-size: 0.9em; color: #555;">🙏 We respect your inbox. No spam, just soul food.</p>
+  <div id="prayerThankYou" style="display:none; margin-top:30px;">
+    <h3 style="color:#4a148c;">💜 Thank you</h3>
+    <p>Your prayer request has been received. We’re lifting you up in faith and love.</p>
+  </div>
 </section>
+
+<script>
+  document.getElementById('prayerForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+
+    fetch("https://formspree.io/f/mwpnyngz", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        email: this.email.value,
+        message: this.message.value
+      })
+    }).then(() => {
+      this.style.display = "none";
+      document.getElementById('prayerThankYou').style.display = "block";
+    });
+  });
+</script>
 <footer style="background-color: #4a148c; color: white; padding: 40px 20px; text-align: center;">
   <p style="font-size: 1.1em; margin-bottom: 10px;">
     ✨ Souled-out Life — Living loud, loving deep, shining bright.
