@@ -3,20 +3,87 @@
   <button type="submit">Submit</button>
 </form>
 
-<div id="thankYouMessage" style="display:none; margin-top:30px;">
-  <h2>🎉 Thank You!</h2>
-  <p>Your devotional is ready to download:</p>
-  <a href="https://souledout326-stack.github.io/Souled-out-life-/devotional.pdf" target="_blank" style="background-color:#4a148c; color:white; padding:12px 24px; border-radius:6px; text-decoration:none; font-weight:bold;">
-    📥 Download Devotional
-  </a>
-  <p style="margin-top:20px;">Redirecting to homepage in 10 seconds...</p>
+<div class="form-container">
+  <h2 style="color:#4a148c; font-size:28px;">📥 Get Your Free Devotional</h2>
+  <p style="font-size:16px; color:#444;">Enter your email below and we’ll send you the download link.</p>
+
+  <form id="devotionalForm">
+    <input type="email" name="email" placeholder="Your email address" required>
+    <button type="submit">Submit</button>
+  </form>
+
+  <div id="thankYouMessage" style="display:none; margin-top:30px;">
+    <h2 style="color:#4a148c;">🎉 Thank You!</h2>
+    <p>Your devotional is ready to download:</p>
+    <a href="https://souledout326-stack.github.io/Souled-out-life-/devotional.pdf" target="_blank" class="download-button">
+      📥 Download Devotional
+    </a>
+    <p style="margin-top:20px;">Redirecting to homepage in 10 seconds...</p>
+  </div>
 </div>
+
+<style>
+  .form-container {
+    background: #ffffff;
+    padding: 40px;
+    border-radius: 12px;
+    box-shadow: 0 0 25px rgba(0,0,0,0.1);
+    max-width: 420px;
+    margin: auto;
+    text-align: center;
+  }
+
+  input[type="email"] {
+    width: 90%;
+    padding: 14px;
+    margin: 12px 0;
+    border: 2px solid #ccc;
+    border-radius: 8px;
+    font-size: 16px;
+    transition: border-color 0.3s;
+  }
+
+  input[type="email"]:focus {
+    border-color: #4a148c;
+    outline: none;
+  }
+
+  button {
+    background-color: #4a148c;
+    color: white;
+    padding: 14px 28px;
+    border: none;
+    border-radius: 8px;
+    font-weight: bold;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+
+  button:hover {
+    background-color: #6a1bb1;
+  }
+
+  .download-button {
+    background-color: #4a148c;
+    color: white;
+    padding: 12px 24px;
+    border-radius: 6px;
+    text-decoration: none;
+    font-weight: bold;
+    display: inline-block;
+    margin-top: 20px;
+  }
+
+  .download-button:hover {
+    background-color: #6a1bb1;
+  }
+</style>
 
 <script>
   document.getElementById('devotionalForm').addEventListener('submit', function(e) {
     e.preventDefault();
 
-    // Send form data to Formspree
     fetch("https://formspree.io/f/mwpnyngz", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
@@ -24,11 +91,9 @@
         email: this.email.value
       })
     }).then(() => {
-      // Hide form and show thank-you message
       this.style.display = "none";
       document.getElementById('thankYouMessage').style.display = "block";
 
-      // Redirect after 10 seconds
       setTimeout(() => {
         window.location.href = "https://souledout326-stack.github.io/Souled-out-life-/";
       }, 10000);
